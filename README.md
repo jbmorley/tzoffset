@@ -21,3 +21,11 @@ Manually test the functionality using `curl`:
 ```bash
 $ curl http://0.0.0.0:5000/api/v1/offset/
 ```
+
+## Live
+
+See https://tzoffset.io.
+
+```bash
+$ curl https://tzoffset.io/api/v1/offset/Europe/Paris
+```
