@@ -3,10 +3,16 @@
 <html>
 <head>
     <title>tzoffset</title>
+    <style type="text/css">
+        .error {
+            color: red;
+        }
+    </style>
 </head>
 <body>
     <select id="timezone-select"></select>
     <div id="offset-div"></div>
+    <div id="div-error" class="error"></div>
     <script type="text/javascript">
 
         var tzoffset = {
@@ -30,15 +36,21 @@
                 var div = document.getElementById('offset-div');
                 div.innerHTML = data.offset;
             }).catch(error => {
-                console.log(`Failed to get offset for timezone '${name}' with error '${error}'`);
+                report_error(error);
             });
+        }
+
+        function report_error(error) {
+            console.log(`Failed to get offset for timezone '${name}' with error '${error}'`);
+            var div = document.getElementById('div-error');
+            div.innerHTML = error;
         }
         
         window.onload = function() {
             var select = document.getElementById('timezone-select');
             select.onchange = () => {
                 update_offset(select.value);
-            }
+            };
             tzoffset.names().then(data => {
                 data.forEach(item => {
                     var option = document.createElement('option');
@@ -47,6 +59,8 @@
                     select.appendChild(option);
                 });
                 update_offset(select.value);
+            }).catch(error => {
+                report_error(error);
             });
         };
 
