@@ -8,3 +8,4 @@ def offset(timezone):
     tz = pytz.timezone(timezone)
     offset = tz.utcoffset(datetime.datetime.now()).total_seconds()
     return offset
+

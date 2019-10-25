@@ -4,6 +4,7 @@ from flask import Flask, escape, request, jsonify, send_from_directory
 from flask_sslify import SSLify
 
 import offset
+import pytz
 
 
 app = Flask(__name__)
@@ -20,6 +21,11 @@ def v1_offset(area, location):
     name = f'{area}/{location}'
     return jsonify({'name': name,
                     'offset': offset.offset(name)})
+
+
+@app.route('/api/v1/names')
+def v1_names():
+	return jsonify(pytz.all_timezones)
 
 
 if __name__ == '__main__':
