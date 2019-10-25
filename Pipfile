@@ -15,6 +15,7 @@ psycopg2-binary = "*"
 requests = "*"
 pytz = "*"
 py-dateutil = "*"
+flask_sslify = "*"
 
 
 [requires]
