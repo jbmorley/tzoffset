@@ -12,6 +12,6 @@ $ heroku local
 
 Manually test the functionality using `curl`:
 
-```
-curl http://0.0.0.0:5000/api/
+```bash
+$ curl http://0.0.0.0:5000/api/
 ```
