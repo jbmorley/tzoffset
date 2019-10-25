@@ -22,7 +22,7 @@ Manually test the functionality using `curl`:
 $ curl http://0.0.0.0:5000/api/v1/offset/
 ```
 
-## Live
+## Production
 
 See https://tzoffset.io.
 
