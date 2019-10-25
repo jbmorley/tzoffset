@@ -13,7 +13,7 @@ $ pipenv install
 Run a local instance for development:
 
 ```bash
-$ heroku local
+$ pipenv run heroku local
 ```
 
 Manually test the functionality using `curl`:
