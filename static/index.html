@@ -5,6 +5,51 @@
     <title>tzoffset</title>
 </head>
 <body>
+    <select id="timezone-select"></select>
+    <div id="offset-div"></div>
+    <script type="text/javascript">
 
+        var tzoffset = {
+
+            offset: (name) => {
+                return fetch('/api/v1/offset/' + name).then(response => {
+                    return response.json();
+                });
+            },
+
+            names: () => {
+                return fetch('/api/v1/names').then(response => {
+                    return response.json();
+                });
+            },
+
+        }
+
+        function update_offset(name) {
+            tzoffset.offset(name).then(data => {
+                var div = document.getElementById('offset-div');
+                div.innerHTML = data.offset;
+            }).catch(error => {
+                console.log(`Failed to get offset for timezone '${name}' with error '${error}'`);
+            });
+        }
+        
+        window.onload = function() {
+            var select = document.getElementById('timezone-select');
+            select.onchange = () => {
+                update_offset(select.value);
+            }
+            tzoffset.names().then(data => {
+                data.forEach(item => {
+                    var option = document.createElement('option');
+                    option.value = item;
+                    option.innerHTML = item;
+                    select.appendChild(option);
+                });
+                update_offset(select.value);
+            });
+        };
+
+    </script>
 </body>
 </html>
