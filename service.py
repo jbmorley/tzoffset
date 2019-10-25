@@ -15,7 +15,7 @@ def index():
     return send_from_directory('static', 'index.html')
 
 
-@app.route('/api/')
+@app.route('/api/v1/offset/')
 def hello():
     name = request.args.get("name", "World")
     return jsonify({'offset': offset.offset("America/Los_Angeles")})
