@@ -15,10 +15,11 @@ def index():
     return send_from_directory('static', 'index.html')
 
 
-@app.route('/api/v1/offset/')
-def hello():
-    name = request.args.get("name", "World")
-    return jsonify({'offset': offset.offset("America/Los_Angeles")})
+@app.route('/api/v1/offset/<string:area>/<string:location>')
+def v1_offset(area, location):
+    name = f'{area}/{location}'
+    return jsonify({'name': name,
+                    'offset': offset.offset(name)})
 
 
 if __name__ == '__main__':
