@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 
 from flask import Flask, escape, request, jsonify, send_from_directory
+from flask_sslify import SSLify
 
 import offset
 
 
 app = Flask(__name__)
+sslify = SSLify(app)
+
 
 @app.route('/')
 def index():
