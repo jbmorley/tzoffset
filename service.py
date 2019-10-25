@@ -16,16 +16,19 @@ def index():
     return send_from_directory('static', 'index.html')
 
 
+@app.route('/api/v1/offset/<string:area>')
 @app.route('/api/v1/offset/<string:area>/<string:location>')
-def v1_offset(area, location):
-    name = f'{area}/{location}'
+def v1_offset(area, location=None):
+    name = area
+    if location is not None:
+        name = f'{area}/{location}'
     return jsonify({'name': name,
                     'offset': offset.offset(name)})
 
 
 @app.route('/api/v1/names')
 def v1_names():
-	return jsonify(pytz.all_timezones)
+    return jsonify(pytz.all_timezones)
 
 
 if __name__ == '__main__':
