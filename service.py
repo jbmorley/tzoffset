@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from flask import Flask, escape, request, jsonify
+from flask import Flask, escape, request, jsonify, send_from_directory
 
 import offset
 
@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-	return ""
+    return send_from_directory('static', 'index.html')
 
 
 @app.route('/api/')
